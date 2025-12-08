@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js --ignore public --ignore frontend",
-    "dev": "webpack -w"
+    "dev": "webpack -w",
+    "format": "prettier --write \"src/views/**/*.ejs\" \"src/**/*.js\""
   },
   "keywords": [],
   "author": "",
@@ -36,5 +37,7 @@
     "nodemon": "^3.1.11",
     "webpack": "^5.27.0",
     "webpack-cli": "^4.5.0"
+    ,"prettier": "^2.8.8",
+    "prettier-plugin-ejs": "^1.0.2"
   }
 }

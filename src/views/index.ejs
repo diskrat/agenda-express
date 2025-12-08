@@ -14,13 +14,25 @@
                 <th>Sobrenome</th>
                 <th>Numero</th>
                 <th>email</th>
+                  
               </tr>
-              <tr>
-                <td>Jose</td>
-                <td>wilson</td>
-                <td>23193210931289</td>
-                <td>dedovesgo@email.com</td>
-              </tr>
+              <% if (contatos && contatos.length > 0) { %>
+                <% contatos.forEach(contato => { %>
+                <tr>
+                  <td><%= contato.nome %></td>
+                  <td><%= contato.sobrenome %></td>
+                  <td><%= contato.telefone %></td>
+                  <td><%= contato.email %></td>
+                  <td><a href="/contato/index/<%= contato._id %>">Editar</a></td>
+                  <td><a class="text-danger" href="/contato/delete/<%= contato._id %>">delete</a></td>
+                </tr>
+                <% }); %>
+              <% } else { %>
+                <tr>
+                  <td colspan="6" class="text-center">Nenhum contato encontrado</td>
+                </tr>
+              <% } %>
+             
             </table>
           </div>
 
