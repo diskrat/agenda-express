@@ -1,6 +1,5 @@
-const Contato  = require('../models/contatoModel')
+const Contato = require('../models/contatoModel');
 exports.paginaInicial = async (req, res) => {
-  const contatos = await Contato.buscaContatos()
+  const contatos = await Contato.buscaContatos();
   res.render('index', { contatos });
 };
-
