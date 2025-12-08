@@ -3,9 +3,11 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-2"></div>
-    <div class="col-lg-8 my-5">
-      <h1 class="display-1 text-center">Error 404</h1>
-      <p class="text-center lead">A pagina que voce procura nao existe</p>
+    <div class="col-lg-8 my-3">
+      <h1 class="text-center">Ola <%= user.email %></h1>
+      <p class="text-center lead">Saia para criar outra conta</p>
+
+      <%- include('includes/messages') %>
     </div>
     <div class="col-lg-2"></div>
   </div>

@@ -1,36 +1,38 @@
 <%- include('includes/head') %>
-  <%- include('includes/nav') %>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-8 my-3">
-          <h1 class="text-center">Agenda</h1>
-          <p class="text-center lead">Seus contatos estao abaixo</p>
-          <div class="row">
-            <div class="col my-3">
-              <div class="alert alert-danger">Um erro</div>
-            </div>
-          </div>
-
-          <div class="responsive-table">
-            <table class="table my-3">
-              <tr>
-                <th>Nome</th>
-                <th>Sobrenome</th>
-                <th>Numero</th>
-                <th>email</th>
-              </tr>
-              <tr>
-                <td>Jose</td>
-                <td>wilson</td>
-                <td>23193210931289</td>
-                <td>dedovesgo@email.com</td>
-              </tr>
-            </table>
-          </div>
-
-        </div>
-        <div class="col-lg-2"></div>
+<%- include('includes/nav') %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8 my-3">
+      <h1 class="text-center">Agenda</h1>
+      <p class="text-center lead">Seus contatos estao abaixo</p>
+      <%- include('includes/messages') %>
+      <div class="responsive-table">
+        <table class="table my-3">
+          <tr>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>Numero</th>
+            <th>email</th>
+          </tr>
+          <% if (contatos && contatos.length > 0) { %> <% contatos.forEach(contato => { %>
+          <tr>
+            <td><%= contato.nome %></td>
+            <td><%= contato.sobrenome %></td>
+            <td><%= contato.telefone %></td>
+            <td><%= contato.email %></td>
+            <td><a href="/contato/index/<%= contato._id %>">Editar</a></td>
+            <td><a class="text-danger" href="/contato/delete/<%= contato._id %>">delete</a></td>
+          </tr>
+          <% }); %> <% } else { %>
+          <tr>
+            <td colspan="6" class="text-center">Nenhum contato encontrado</td>
+          </tr>
+          <% } %>
+        </table>
       </div>
     </div>
-    <%- include('includes/footer') %>
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+<%- include('includes/footer') %>

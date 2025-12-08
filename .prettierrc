@@ -1,0 +1,16 @@
+{
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "plugins": ["prettier-plugin-ejs"],
+  "overrides": [
+    {
+      "files": "*.ejs",
+      "options": {
+        "parser": "lwc" 
+      }
+    }
+  ]
+}

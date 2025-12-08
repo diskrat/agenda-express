@@ -17,7 +17,20 @@ const csrf = require('csurf');
 const { middlewareGlobal, checkCsrfError, csrfMiddleware } = require('./src/middlewares/middleware');
 
 app.use(helmet());
-
+// Content Security Policy: allow jsdelivr CDN for scripts/styles (adjust for production)
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", 'https://cdn.jsdelivr.net'],
+      styleSrc: ["'self'", 'https://cdn.jsdelivr.net', "'unsafe-inline'"],
+      imgSrc: ["'self'", 'data:'],
+      connectSrc: ["'self'", 'https://cdn.jsdelivr.net'],
+      fontSrc: ["'self'", 'https://cdn.jsdelivr.net'],
+      objectSrc: ["'none'"],
+    },
+  })
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, 'public')));
