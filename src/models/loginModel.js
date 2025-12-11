@@ -46,6 +46,7 @@ class Login {
 
   valida() {
     this.cleanUp();
+    if (!this.body.email) this.errors.push('Nao ha email');
     if (!validator.isEmail(this.body.email)) this.errors.push('E-mail invalido');
     if (this.body.password.length < 3 || this.body.password.length > 50)
       this.errors.push('senha nao entre 3 e 50');

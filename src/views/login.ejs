@@ -1,5 +1,4 @@
-<%- include('includes/head') %>
-<%- include('includes/nav') %>
+<%- include('includes/head') %> <%- include('includes/nav') %>
 <div class="container">
   <div class="row">
     <div class="col-lg-2"></div>
@@ -13,15 +12,35 @@
         <div class="col-lg">
           <h4>Faca seu login</h4>
           <p>Se nao tem senha preencha</p>
-          <form action="/login/register" method="post">
-            <input type="hidden" name="_csrf" value="<%=csrfToken %>/>
+          <form
+            class="form-cadastro needs-validation"
+            novalidate
+            action="/login/register"
+            method="post"
+          >
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
             <div class="mb-3">
-              <label for="email" class="form-label">Email address</label>
-              <input type="email" class="form-control" name="email" />
+              <label for="register-email" class="form-label">Email address</label>
+              <input
+                id="register-email"
+                type="email"
+                class="form-control"
+                name="email"
+                autocomplete="email"
+                required
+              />
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label">Senha</label>
-              <input type="password" class="form-control" name="password" />
+              <label for="register-password" class="form-label">Senha</label>
+              <input
+                id="register-password"
+                type="password"
+                class="form-control"
+                name="password"
+                required
+                minlength="3"
+                maxlength="50"
+              />
             </div>
             <button type="submit" class="btn btn-primary">Criar conta</button>
           </form>
@@ -30,15 +49,23 @@
         <div class="col-lg">
           <h4>Entrar no sistema</h4>
           <p>Faz login</p>
-          <form action="/login/login" method="post">
-            <input type="hidden" name="_csrf" value="<%=csrfToken %>/>
+          <form class="form-login needs-validation" novalidate action="/login/login" method="post">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
             <div class="mb-3">
-              <label for="email" class="form-label">Email address</label>
-              <input type="email" class="form-control" name="email" />
+              <label for="login-email" class="form-label">Email address</label>
+              <input id="login-email" type="email" class="form-control" name="email" required />
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label">Senha</label>
-              <input type="password" class="form-control" name="password" />
+              <label for="login-password" class="form-label">Senha</label>
+              <input
+                id="login-password"
+                type="password"
+                class="form-control"
+                name="password"
+                required
+                minlength="3"
+                maxlength="50"
+              />
             </div>
             <button type="submit" class="btn btn-primary">Entrar</button>
           </form>
