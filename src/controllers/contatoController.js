@@ -5,7 +5,8 @@ exports.index = (req, res) => {
 
 exports.register = async (req, res) => {
   try {
-    const contato = new Contato(req.body);
+    const contatoData = { ...req.body, dono: req.session.user._id };
+    const contato = new Contato(contatoData);
     await contato.register();
     if (contato.errors.length > 0) {
       req.flash('errors', contato.errors);
@@ -32,7 +33,7 @@ exports.edit = async (req, res) => {
   try {
     if (!req.params.id) return res.render('404');
     const contato = new Contato(req.body);
-    await contato.edit(req.params.id);
+    await contato.edit(req.params.id, req.session.user._id);
     if (contato.errors.length > 0) {
       req.flash('errors', contato.errors);
       req.session.save(() => res.redirect('/contato/index'));
@@ -50,7 +51,7 @@ exports.edit = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     if (!req.params.id) return res.render('404');
-    const contato = await Contato.delete(req.params.id);
+    const contato = await Contato.delete(req.params.id, req.session.user._id);
     if (!contato) return res.render('404');
 
     req.flash('success', 'Contato apagado com sucesso');
