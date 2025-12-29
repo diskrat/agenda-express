@@ -13,7 +13,7 @@
         <div class="col-lg">
           <h4>Faca seu login</h4>
           <p>Se nao tem senha preencha</p>
-          <form action="/login/register" method="post">
+          <form class="form-cadastro" action="/login/register" method="post" novalidate>
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
             <div class="mb-3">
               <label for="email" class="form-label">Email address</label>
@@ -30,7 +30,7 @@
         <div class="col-lg">
           <h4>Entrar no sistema</h4>
           <p>Faz login</p>
-          <form action="/login/login" method="post">
+          <form class="form-login" action="/login/login" method="post"  novalidate>
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
             <div class="mb-3">
               <label for="email" class="form-label">Email address</label>
