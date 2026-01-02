@@ -33,6 +33,12 @@ class Contato {
       this.errors.push('Email inválido');
     }
 
+
+    // validate telefone only when provided
+    if (this.body.telefone && !validator.isMobilePhone(this.body.telefone)) {
+      this.errors.push('telefone invalido');
+    }
+
     // require either email or telefone
     if (!this.body.email && !this.body.telefone) {
       this.errors.push('Preencha email ou telefone');
@@ -54,14 +60,14 @@ class Contato {
   }
   static async buscaPorId(id,dono) {
     if (typeof id !== 'string') return;
-    const user = await ContatoModel.find({dono,_id:id});
-    return user;
+    const contato = await ContatoModel.findOne({ dono, _id: id });
+    return contato;
   }
   async edit(id,dono) {
     if (typeof id !== 'string') return;
     this.valida();
     if (this.errors.length > 0) return;
-    this.contato = await ContatoModel.findByIdAndUpdate(id, this.body,dono, { new: true });
+    this.contato = await ContatoModel.findOneAndUpdate({ _id: id, dono }, this.body, { new: true });
   }
   static async buscaContatos(dono) {
     const contatos = await ContatoModel.find({dono}).sort({ criadoEm: -1 });

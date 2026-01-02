@@ -1,6 +1,6 @@
 const validator = require('validator')
 
-export default class Login {
+export default class Contato {
     constructor(formClass) {
         this.form = document.querySelector(formClass)
     }
@@ -16,17 +16,29 @@ export default class Login {
     }
     validate(e) {
         const el = e.target;
+        const nome = el.querySelector('input[name="nome"]');
+        const sobrenome = el.querySelector('input[name="sobrenome"]');
         const email = el.querySelector('input[name="email"]');
-        const password = el.querySelector('input[name="password"]');
+        const telefone = el.querySelector('input[name="telefone"]');
+
         let error = false;
         this.cleanUp();
-        if (!validator.isEmail(email.value)) {
+        if(!nome.value) {
+            error = true;
+            this.errorMsg('Nome eh obrigatorio',nome);
+        }
+
+        if (email.value && !validator.isEmail(email.value)) {
             error = true;
             this.errorMsg('E-mail invalido', email);
         }
-        if (password.value.length < 3 || password.value.length > 50) {
+        if (telefone.value && !validator.isMobilePhone(telefone.value)){
             error = true;
-            this.errorMsg('senha nao entre 3 e 50', password);
+            this.errorMsg('Telefone invalido', telefone)
+        }
+        if (!telefone.value && !email.value) {
+            error = true;
+            this.errorMsg('Preencha email ou telefone', telefone);
         }
         if (!error) el.submit();
     }
