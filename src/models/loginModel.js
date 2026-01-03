@@ -23,8 +23,8 @@ class Login {
       this.errors.push('Usuario nao existe');
       return;
     }
-    if (bcryptjs.compareSync(this.body.password, this.user.password)) {
-      this.errors.push('Senha invalida');
+    if (!bcryptjs.compareSync(this.body.password, this.user.password)) {
+      this.errors.push('Senha inválida');
       this.user = null;
       return;
     }
